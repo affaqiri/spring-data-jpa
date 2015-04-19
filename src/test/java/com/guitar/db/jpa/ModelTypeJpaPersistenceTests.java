@@ -1,6 +1,9 @@
 package com.guitar.db.jpa;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -46,6 +49,18 @@ public class ModelTypeJpaPersistenceTests {
 	public void testFind() throws Exception {
 		ModelType mt = modelTypeJpaRepository.findOne(1L);
 		assertEquals("Dreadnought Acoustic", mt.getName());
+	}
+	
+	@Test
+	public void testNullAndNotNull() throws Exception {
+		List<ModelType> mts = modelTypeJpaRepository.findByNameIsNull();
+		assertNull(mts.get(0).getName());
+		
+		mts = modelTypeJpaRepository.findByNameIsNotNull();
+		assertEquals(7, mts.size());
+		
+		mts = modelTypeJpaRepository.findByNameNotNull();
+		assertEquals(7, mts.size());
 	}
 	
 }

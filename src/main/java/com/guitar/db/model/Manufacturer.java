@@ -17,7 +17,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @NamedNativeQuery(name = "Manufacturer.getAllThatSellAcoustics", 
-		query = "SELECT m.id, m.name, m.foundedDate, m.averageYearlySales, m.location_id as headquarters_id "
+		query = "SELECT m.id, m.name, m.foundedDate, m.averageYearlySales, m.location_id as headquarters_id, m.active "
 	    + "FROM Manufacturer m "
 		+ "LEFT JOIN Model mod ON (m.id = mod.manufacturer_id) "
 		+ "LEFT JOIN ModelType mt ON (mt.id = mod.modeltype_id) "
@@ -40,6 +40,8 @@ public class Manufacturer {
 
 	@ManyToOne
 	private Location headquarters;
+	
+	private boolean active;
 
 	public String getName() {
 		return name;
@@ -83,6 +85,14 @@ public class Manufacturer {
 
 	public Long getId() {
 		return id;
+	}
+	
+	public boolean isActive() {
+		return active;
+	}
+	
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 }
