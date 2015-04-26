@@ -42,11 +42,11 @@ public class ManufacturerJpaPersistenceTests {
 //		Manufacturer m = manufacturerJpaRepository.getManufacturerByName("Fender");
 //		assertEquals("Fender Musical Instruments Corporation", m.getName());
 //	}
-//
-//	@Test
-//	public void testGetManufacturersThatSellModelsOfType() throws Exception {
-//		List<Manufacturer> mans = manufacturerJpaRepository.getManufacturersThatSellModelsOfType("Semi-Hollow Body Electric");
-//		assertEquals(1, mans.size());
-//	}
+
+	@Test
+	public void testGetManufacturersThatSellModelsOfType() throws Exception {
+		List<Manufacturer> mans = manufacturerJpaRepository.getAllThatSellAcoustics("Semi-Hollow Body Electric");
+		assertEquals(1, mans.size());
+	}
 	
 }

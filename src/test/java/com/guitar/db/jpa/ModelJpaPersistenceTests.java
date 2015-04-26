@@ -74,16 +74,16 @@ public class ModelJpaPersistenceTests {
 		});
 	}
 
-//	@Test
-//	public void testGetModelsByPriceRangeAndWoodType() throws Exception {
-//		List<Model> mods = modelJpaRepository.getModelsByPriceRangeAndWoodType(BigDecimal.valueOf(1000L), BigDecimal.valueOf(2000L), "Maple");
-//		assertEquals(3, mods.size());
-//	}
-//
-//	@Test
-//	public void testGetModelsByType() throws Exception {
-//		List<Model> mods = modelJpaRepository.getModelsByType("Electric");
-//		assertEquals(4, mods.size());
-//	}
+	@Test
+	public void testGetModelsByPriceRangeAndWoodType() throws Exception {
+		List<Model> mods = modelJpaRepository.queryByPriceRangeAndWoodType(BigDecimal.valueOf(1000L), BigDecimal.valueOf(2000L), "Maple");
+		assertEquals(3, mods.size());
+	}
+
+	@Test
+	public void testGetModelsByType() throws Exception {
+		List<Model> mods = modelJpaRepository.findAllModelsByType("Electric");
+		assertEquals(4, mods.size());
+	}
 	
 }
